@@ -8,4 +8,12 @@ Windows & Linux & Mac OS Use Doc:
 ```
 python masscan-tools.py
 ->help
+
+    User Doc:
+    load	InputFilePath
+    split	InputFilePath	OutputFilePath	OutputFormat
+    showall	
+    clear	
+    
+->
 ```
