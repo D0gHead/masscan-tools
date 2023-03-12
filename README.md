@@ -1,10 +1,11 @@
 # masscan-tools
-Format Masscan OutFile
-这个小工具能把Masscan的Json格式输出的文件,使用自定义的任意字符串进行格式化输出。
+Masscan-Tools V2.0
 
+此版本相较上个版本加入了列出所有Host端口情况的功能,传参方式从命令行传参到了内置命令行。
 
-例如使用:
+Windows & Linux & Mac OS Use Doc:
 
- ```python masscan-tools.py result.json bbb.txt ":"```
- 
- 可以使用":"来隔开Host与Port
+```
+python masscan-tools.py
+->help
+```
