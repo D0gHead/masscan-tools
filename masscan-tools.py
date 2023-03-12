@@ -1,5 +1,4 @@
 import json
-import sys
 
 class host():
 
@@ -13,7 +12,10 @@ class host():
 def printusedoc():
     print('''
     User Doc:
-    python masscan-tools.py InputFilePath OutputFilePath OutputFormat
+    load\tInputFilePath
+    split\tInputFilePath\tOutputFilePath\tOutputFormat
+    showall\t
+    clear\t
     ''')
 
 def readjsonfile(path):
@@ -49,14 +51,56 @@ def outputfile(outfilepath,formatstr):
             f.write(i.hostip + str(formatstr) + k + "\n")
     f.close()
 
+def listallhost():
+
+    global hostlist
+    global hostdic
+
+    for i in hostdic:
+        print("----------------------------")
+        print("[+]Host Ip: " + hostlist[int(hostdic[i][4:])].hostip)
+        print("[+]Open Port:",end=" ")
+        for k in hostlist[int(hostdic[i][4:])].portlist:
+            print(k,end=" ")
+        print()
+        print("----------------------------")
+
+
 hostlist=[]
 hostdic = {}
 sum = 0
 
 if __name__ == '__main__':
-    try:
-        data = readjsonfile(sys.argv[1])
-        jsondatatoclass(data)
-        outputfile(sys.argv[2],sys.argv[3])
-    except:
-        printusedoc()
+
+    while True:
+
+        userinput = input("->")
+
+        if userinput in ["help","h","?","HELP"]:
+
+            printusedoc()
+
+        elif userinput.split(" ")[0] in ["Load","load","LOAD"]:
+
+            data = readjsonfile(userinput.split(" ")[1])
+            jsondatatoclass(data)
+
+        elif userinput in ["SHOWALL","showall","ShowAll","Showall","listall","LISTALL","LishAll","Listall"]:
+
+            listallhost()
+
+        elif userinput.split(" ")[0] in ["split","Split","SPLIT"]:
+
+            try:
+                data = readjsonfile(userinput.split(" ")[1])
+                jsondatatoclass(data)
+                outputfile(userinput.split(" ")[2], userinput.split(" ")[0][3])
+            except:
+                printusedoc()
+
+        elif userinput in ["clear","Clear","CLEAR"]:
+
+            hostlist = []
+            hostdic = {}
+            sum = 0
+
