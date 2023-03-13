@@ -65,12 +65,11 @@ def listallhost():
         print()
         print("----------------------------")
 
-
-hostlist=[]
-hostdic = {}
-sum = 0
-
 if __name__ == '__main__':
+
+    hostlist=[]
+    hostdic = {}
+    sum = 0
 
     while True:
 
@@ -91,10 +90,14 @@ if __name__ == '__main__':
 
         elif userinput.split(" ")[0] in ["split","Split","SPLIT"]:
 
+            hostlist=[]
+            hostdic = {}
+            sum = 0
+
             try:
                 data = readjsonfile(userinput.split(" ")[1])
                 jsondatatoclass(data)
-                outputfile(userinput.split(" ")[2], userinput.split(" ")[0][3])
+                outputfile(userinput.split(" ")[2], userinput.split(" ")[3])
             except:
                 printusedoc()
 
